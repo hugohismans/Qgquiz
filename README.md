@@ -112,15 +112,16 @@ livre**, et ce sont les meilleures questions du site.
 node verifier.js
 ```
 
-**1 854 contrôles**, sans navigateur pour l'essentiel. Ils couvrent la banque de
-questions, le tirage, le barème, le classement, le miroir du multijoueur,
-l'écriture des nombres, les réglages du son, et les licences des photos.
+**1 892 contrôles**, six outils, sans navigateur pour l'essentiel. Ils couvrent
+la banque de questions, le tirage, le barème, le classement, le miroir du
+multijoueur, l'écriture des nombres, les réglages du son, les licences des
+photos, et la mise en page telle qu'on la voit.
 
-Chacun a été prouvé capable d'échouer : les vingt-sept comportements surveillés
-ont été cassés volontairement, un par un, et les vingt-sept ont été attrapés.
-Un contrôle qui n'échoue jamais ne teste rien.
+Chacun a été prouvé capable d'échouer : les trente et un comportements
+surveillés ont été cassés volontairement, un par un, et les trente et un ont
+été attrapés. Un contrôle qui n'échoue jamais ne teste rien.
 
-Deux d'entre eux valent d'être expliqués :
+Trois d'entre eux valent d'être expliqués :
 
 - **`outil-verif-sortie.js`** ouvre un vrai navigateur, branche un analyseur sur
   la sortie audio, joue les sons et **mesure l'amplitude qui passe**. Le plafond
@@ -132,6 +133,13 @@ Deux d'entre eux valent d'être expliqués :
   est créditée**. C'est le second sens qu'on oublie : on dépose une image « juste
   pour voir », on la garde, et six mois plus tard personne ne sait plus d'où
   elle vient.
+- **`outil-verif-page.js`** mesure la page à 320, 390 et 1200 pixels, avec la
+  photo en place. Il est né d'un défaut que le code n'avait pas introduit : la
+  règle CSS ordinaire « un bouton désactivé s'estompe » rendait les quatre
+  réponses translucides au moment précis où on les relit. Invisible pendant
+  toute la construction, parce que le fond était un dégradé sombre. Le jour où
+  la façade de l'hôtel de ville est passée derrière, elle a traversé les
+  réponses. **Le décor a révélé un défaut qui dormait là depuis le début.**
 
 ### La partie à deux
 

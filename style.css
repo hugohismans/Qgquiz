@@ -81,6 +81,15 @@ body.avec-photo #decor::before {
 }
 body.avec-photo #decor svg { opacity: .35; }
 
+/* Une photo est bien plus chargée qu'un dégradé : le voile doit reprendre du
+   corps, sinon les briques traversent le texte. */
+body.avec-photo #voile {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(232,176,75,.08), transparent 60%),
+    linear-gradient(to bottom, rgba(18,16,14,.52) 0%, rgba(18,16,14,.74) 40%,
+                                rgba(18,16,14,.78) 72%, rgba(18,16,14,.66) 100%);
+}
+
 /* Le décor doit se sentir, pas se lire. Sans ce voile, le chevalement passait
    entre les boutons de réponse et on ne savait plus ce qui était cliquable. */
 #voile {
@@ -240,9 +249,12 @@ button:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
 
 /* -------------------------------------------------------------- le jeu */
 
+/* La marge à droite laisse sa place au bouton du son, qui est posé par-dessus
+   tout, en position fixe. Sans elle, il mordait sur le score. */
 .barre-haut {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 14px; color: var(--gris); margin: 0 0 10px;
+  padding-right: 54px;
 }
 .barre-haut b { color: var(--lampe); }
 
@@ -283,6 +295,14 @@ button:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
   line-height: 1.4;
 }
 .reponse:hover:not(:disabled) { border-color: var(--or); }
+
+/* Une réponse révélée est désactivée, mais elle doit rester PARFAITEMENT
+   opaque. La règle générale `button:disabled { opacity: .45 }` est faite pour
+   un bouton qu'on ne peut pas encore presser ; appliquée aux réponses, elle
+   rendait les quatre propositions translucides au moment précis où on les
+   relit. Invisible tant que le fond était un dégradé sombre, catastrophique le
+   jour où une photo est passée derrière. */
+.reponse:disabled { opacity: 1; cursor: default; }
 .reponse .lettre {
   flex: 0 0 26px; height: 26px; border-radius: 7px;
   background: rgba(232,176,75,.16); color: var(--or);
@@ -299,12 +319,25 @@ button:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
 }
 .reponse.fausse .lettre { background: #d1332e; color: #fff; }
 /* Une mauvaise réponse s'efface, mais reste lisible : on veut pouvoir relire
-   les quatre propositions au moment où la bonne se révèle. */
-.reponse.terne { opacity: .62; }
+   les quatre propositions au moment où la bonne se révèle.
 
+   Surtout : on l'assombrit, on ne la rend PAS transparente. `opacity` traverse
+   le fond du bouton, et avec une photo derrière, la façade de l'hôtel de ville
+   passait à travers les réponses — on ne lisait plus rien. Trouvé à l'œil sur
+   une capture, gardé par `outil-verif-page.js`. */
+.reponse.terne {
+  filter: saturate(.55) brightness(.72);
+  color: var(--gris);
+}
+
+/* Le fond est presque plein, pas un voile clair : c'est le bloc qu'on LIT
+   après avoir répondu, et une photo qui passe derrière un paragraphe de six
+   lignes le rend pénible bien avant de le rendre illisible. */
 .verdict {
   margin: 18px 0 0; padding: 15px 16px;
-  border-radius: 12px; background: rgba(255,255,255,.05);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(40,35,31,.95), rgba(28,24,21,.95));
+  border: 1px solid rgba(255,255,255,.06);
   border-left: 3px solid var(--or);
   animation: monte .3s ease both;
 }
