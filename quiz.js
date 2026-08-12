@@ -102,7 +102,7 @@ if (typeof document !== "undefined") (function () {
   const etat = {
     niveaux: [1, 2, 3],
     themes: Object.keys(THEMES),
-    mode: "solo",
+    mode: "solo", longueur: 0,
     liste: [], i: 0, score: 0, justes: 0,
     ordre: [0, 1, 2, 3], repondu: false, debut: 0, minuteur: null,
 
@@ -112,7 +112,14 @@ if (typeof document !== "undefined") (function () {
   };
 
   const LIMITE = function () { return (CONFIG.secondesParQuestion || 25) * 1000; };
-  const COMBIEN = function () { return CONFIG.questionsParPartie || 10; };
+  /* Les longueurs proposées. Avec plus de cent questions en banque, une partie
+     de dix ne fait qu'effleurer — mais vingt d'affilée, c'est long quand on est
+     huit autour d'une table. Alors on laisse choisir. */
+  const LONGUEURS = [5, 10, 15, 25];
+
+  const COMBIEN = function () {
+    return etat.longueur || CONFIG.questionsParPartie || 10;
+  };
 
   /* ------------------------------------------------------------- écrans */
 
@@ -134,7 +141,7 @@ if (typeof document !== "undefined") (function () {
   function souvenir() {
     try {
       localStorage.setItem("quiz-quaregnon", JSON.stringify({
-        niveaux: etat.niveaux, themes: etat.themes
+        niveaux: etat.niveaux, themes: etat.themes, longueur: etat.longueur
       }));
     } catch (e) { /* navigation privée : tant pis, on joue quand même */ }
   }
@@ -144,6 +151,7 @@ if (typeof document !== "undefined") (function () {
       const b = JSON.parse(localStorage.getItem("quiz-quaregnon") || "null");
       if (b && Array.isArray(b.niveaux) && b.niveaux.length) etat.niveaux = b.niveaux;
       if (b && Array.isArray(b.themes) && b.themes.length) etat.themes = b.themes;
+      if (b && LONGUEURS.indexOf(b.longueur) !== -1) etat.longueur = b.longueur;
     } catch (e) { /* idem */ }
   }
 
@@ -181,6 +189,20 @@ if (typeof document !== "undefined") (function () {
         bascule(etat.themes, cle); souvenir(); peindreReglages();
       };
       zt.appendChild(b);
+    });
+
+    const zl = $("choix-longueur");
+    zl.innerHTML = "";
+    LONGUEURS.forEach(function (n) {
+      const b = document.createElement("button");
+      b.className = "pastille";
+      b.setAttribute("aria-pressed", COMBIEN() === n);
+      b.textContent = n + " questions";
+      b.onclick = function () {
+        SON.jouer("clic");
+        etat.longueur = n; souvenir(); peindreReglages();
+      };
+      zl.appendChild(b);
     });
 
     const n = QUESTIONS.filter(function (q) {
