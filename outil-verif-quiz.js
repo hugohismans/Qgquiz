@@ -174,6 +174,108 @@ QUESTIONS.forEach(function (q) {
   }
 });
 
+/* ------------------------------------------------- deux fois la même question */
+
+/* L'identifiant unique ne protège de rien ici : deux questions peuvent porter
+   des noms différents et demander exactement la même chose. Le risque devient
+   sérieux dès qu'on fusionne un lot écrit ailleurs — et c'est exactement ce
+   qu'on s'apprête à faire.
+
+   On compare les énoncés RÉDUITS : sans accents, sans ponctuation, sans les
+   petits mots qui ne portent pas de sens. « En quelle année la Charte a-t-elle
+   été adoptée ? » et « En quelle année la Charte de Quaregnon fut-elle
+   adoptée ? » se réduisent au même squelette, et l'on s'en aperçoit avant que
+   les deux ne tombent dans la même partie. */
+
+titre("Deux fois la même question");
+
+const PETITS_MOTS = new Set([
+  "le", "la", "les", "un", "une", "des", "du", "de", "d", "l", "et", "ou",
+  "a", "au", "aux", "en", "dans", "par", "pour", "sur", "est", "sont", "ce",
+  "cette", "ces", "il", "elle", "on", "se", "s", "que", "qui", "quoi", "y",
+  "t", "quel", "quelle", "quels", "quelles", "combien", "comment", "ete",
+  "etait", "elles", "ils", "avec", "sans", "plus", "moins", "son", "sa", "ses",
+  "donc", "alors", "aussi", "bien", "meme", "tres", "fut", "furent", "avant"
+]);
+
+function squelette(enonce) {
+  return enonce
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(" ")
+    .filter(function (m) { return m && !PETITS_MOTS.has(m); })
+    .sort()
+    .join(" ");
+}
+
+/* Comparer les squelettes à l'identique ne suffit pas : un seul mot en plus
+   — « Quelle est DONC la capitale… » — et les deux énoncés cessent d'être
+   égaux tout en restant la même question.
+
+   Compter les mots communs sur l'ensemble des mots ne suffit pas non plus, et
+   c'est moins évident : une question courte n'a que deux ou trois mots qui
+   portent, alors un seul mot en plus fait chuter la mesure d'un tiers. Les
+   deux « capitale de la Belgique » passaient au travers.
+
+   On mesure donc l'INCLUSION : la part des mots de la plus courte que l'on
+   retrouve dans la plus longue. Si tout ce que demande l'une est déjà dans
+   l'autre, c'est la même question, quelle que soit la longueur de l'habillage.
+
+   Deux questions voisines s'en tirent : « en quelle année Van Gogh arrive-t-il
+   au Borinage ? » et « quand Van Gogh quitte-t-il le Borinage ? » ne partagent
+   que trois mots sur cinq. */
+const SEUIL_RESSEMBLANCE = 0.85;
+
+/* Une condition de plus, trouvée en éprouvant la première : l'inclusion seule
+   accusait « Quel est le code postal de Quaregnon ? » de redire « Depuis quelle
+   année le code postal 7390 couvre-t-il Quaregnon ET Wasmuël ? ». Les trois
+   mots de la première sont bien tous dans la seconde — mais la seconde en a
+   huit, et pose une tout autre question.
+
+   Alors on n'accuse que si les deux énoncés font à peu près la même longueur.
+   Redire la même chose en deux fois plus de mots, ce n'est plus la redire. */
+const ECART_MAXIMAL = 2;
+
+function ressemblance(a, b) {
+  const A = new Set(a), B = new Set(b);
+  if (A.size < 2 || B.size < 2) return 0;
+  const petit = Math.min(A.size, B.size), grand = Math.max(A.size, B.size);
+  if (grand > petit * ECART_MAXIMAL) return 0;
+  let communs = 0;
+  A.forEach(function (m) { if (B.has(m)) communs++; });
+  return communs / petit;
+}
+
+const mots = QUESTIONS.map(function (q) { return squelette(q.q).split(" "); });
+
+for (let i = 0; i < QUESTIONS.length; i++) {
+  for (let j = i + 1; j < QUESTIONS.length; j++) {
+    const r = ressemblance(mots[i], mots[j]);
+    if (r < SEUIL_RESSEMBLANCE) continue;
+    verifier("deux énoncés se ressemblent trop — « " + QUESTIONS[i].q + " »",
+      false,
+      "il ressemble à " + Math.round(r * 100) + " % à « " + QUESTIONS[j].q
+      + " » (" + QUESTIONS[i].id + " / " + QUESTIONS[j].id + ")");
+  }
+}
+controles++;   /* le balayage compte pour un contrôle même s'il ne trouve rien */
+
+/* Et le cas plus subtil : deux questions différentes qui attendent la même
+   réponse sur le même thème. Ce n'est pas toujours une faute — « qui a fondé
+   le Grand-Hornu ? » et « quel marchand lillois… ? » sont deux bonnes
+   questions — mais au-delà de trois, c'est que le lot manque de variété. */
+const parReponse = {};
+QUESTIONS.forEach(function (q) {
+  const cle = q.theme + " → " + String(q.r[q.bonne]).toLowerCase().trim();
+  parReponse[cle] = (parReponse[cle] || 0) + 1;
+});
+Object.keys(parReponse).forEach(function (cle) {
+  verifier("la réponse « " + cle + " » ne revient pas trop souvent",
+    parReponse[cle] <= 3,
+    "elle est la bonne réponse de " + parReponse[cle] + " questions du même thème");
+});
+
 /* ------------------------------------------------------------- les sources */
 
 titre("Les sources");
