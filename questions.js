@@ -1067,6 +1067,255 @@ const QUESTIONS = [
     pourquoi: "Le 6 novembre 1814, à Dinant. Il inventera le saxophone à vingt-sept ans.",
     sources: ["wp-sax"]
   }
+,
+
+  /* ---- le Doudou, à dix kilomètres de Quaregnon, et trois Belges qui ont
+          changé le monde sans que grand monde le sache ---- */
+  {
+    id: "be-doudou-ville", theme: "belgique", niveau: 1,
+    q: "Dans quelle ville du Hainaut a lieu la Ducasse rituelle appelée le Doudou ?",
+    r: ["Mons", "Tournai", "Charleroi", "Ath"],
+    bonne: 0,
+    pourquoi: "Mons, à une dizaine de kilomètres de Quaregnon. Toute la ville s'arrête.",
+    sources: ["doudou-unesco", "wp-ducasse"]
+  },
+  {
+    id: "be-doudou-georges", theme: "belgique", niveau: 1,
+    q: "Qui affronte le dragon pendant le Lumeçon, à Mons ?",
+    r: ["Saint Georges", "Saint Michel", "Saint Martin", "Sainte Waudru"],
+    bonne: 0,
+    pourquoi: "Saint Georges. Sainte Waudru, elle, est portée en procession — "
+            + "c'est un autre moment de la fête.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-lemaitre-bigbang", theme: "belgique", niveau: 1,
+    q: "Quel Belge est considéré comme le père de la théorie du Big Bang ?",
+    r: ["Georges Lemaître", "Ernest Solvay", "Zénobe Gramme", "Jules Bordet"],
+    bonne: 0,
+    pourquoi: "Georges Lemaître, professeur à Louvain — et prêtre catholique.",
+    sources: ["lemaitre-leuven", "britannica-lemaitre"]
+  },
+  {
+    id: "be-bakelite", theme: "belgique", niveau: 1,
+    q: "Quel Belge a inventé la bakélite, le premier plastique de synthèse ?",
+    r: ["Leo Baekeland", "Zénobe Gramme", "Ernest Solvay", "Adolphe Sax"],
+    bonne: 0,
+    pourquoi: "Leo Baekeland, né à Gand. Le mot « bakélite » vient de son nom.",
+    sources: ["britannica-baekeland"]
+  },
+
+  {
+    id: "be-doudou-unesco", theme: "belgique", niveau: 2,
+    q: "Depuis quelle année la Ducasse de Mons est-elle reconnue par l'UNESCO ?",
+    r: ["2005", "1985", "2015", "1999"],
+    bonne: 0,
+    pourquoi: "2005, comme chef-d'œuvre du patrimoine oral et immatériel de l'humanité.",
+    sources: ["doudou-unesco", "pci-ducasse"]
+  },
+  {
+    id: "be-doudou-jour", theme: "belgique", niveau: 2,
+    q: "Quel dimanche tombe la Ducasse de Mons ?",
+    r: ["Le dimanche de la Trinité", "Le dimanche de Pâques",
+        "Le dimanche des Rameaux", "Le premier dimanche de mai"],
+    bonne: 0,
+    pourquoi: "Le dimanche de la Trinité — une date qui bouge chaque année.",
+    sources: ["wp-ducasse"]
+  },
+  {
+    id: "be-doudou-car-dor", theme: "belgique", niveau: 2,
+    q: "Comment s'appelle le char porté en procession pendant la Ducasse de Mons ?",
+    r: ["Le Car d'Or", "Le Char de Waudru", "Le Chariot du Doudou", "Le Grand Attelage"],
+    bonne: 0,
+    pourquoi: "Le Car d'Or. Sa remontée de la rampe, poussée par la foule, est le "
+            + "moment que toute la ville retient son souffle pour voir.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-doudou-waudru", theme: "belgique", niveau: 2,
+    q: "Quelle sainte est portée en procession pendant la Ducasse de Mons ?",
+    r: ["Sainte Waudru", "Sainte Gudule", "Sainte Rolande", "Sainte Begge"],
+    bonne: 0,
+    pourquoi: "Sainte Waudru, dont la châsse descend au début de la fête.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-lumecon", theme: "belgique", niveau: 2,
+    q: "Comment s'appelle le combat entre saint Georges et le dragon, à Mons ?",
+    r: ["Le Lumeçon", "Le Doudou", "Le Car d'Or", "La Trouille"],
+    bonne: 0,
+    pourquoi: "Le Lumeçon. « Doudou » désigne la fête entière, pas le combat.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-lemaitre-1927", theme: "belgique", niveau: 2,
+    q: "En quelle année Georges Lemaître a-t-il soutenu que l'univers est en expansion ?",
+    r: ["1927", "1905", "1949", "1965"],
+    bonne: 0,
+    pourquoi: "1927 — deux ans avant que Hubble ne publie ses mesures.",
+    sources: ["lemaitre-leuven"]
+  },
+  {
+    id: "be-lemaitre-pretre", theme: "belgique", niveau: 2,
+    q: "Quel était l'autre métier de Georges Lemaître, en plus de la science ?",
+    r: ["Prêtre catholique", "Médecin", "Instituteur", "Avocat"],
+    bonne: 0,
+    pourquoi: "Prêtre. L'homme qui a proposé le commencement de l'univers disait "
+            + "la messe le dimanche.",
+    sources: ["lemaitre-leuven", "britannica-lemaitre"]
+  },
+  {
+    id: "be-baekeland-gand", theme: "belgique", niveau: 2,
+    q: "Dans quelle ville Leo Baekeland, l'inventeur de la bakélite, est-il né ?",
+    r: ["Gand", "Anvers", "Bruges", "Liège"],
+    bonne: 0,
+    pourquoi: "Gand, le 14 novembre 1863.",
+    sources: ["britannica-baekeland"]
+  },
+  {
+    id: "be-bakelite-1907", theme: "belgique", niveau: 2,
+    q: "En quelle année Leo Baekeland a-t-il inventé la bakélite ?",
+    r: ["1907", "1869", "1935", "1952"],
+    bonne: 0,
+    pourquoi: "1907. C'est le premier plastique thermodurcissable, et le début "
+            + "d'un siècle entier.",
+    sources: ["britannica-baekeland"]
+  },
+  {
+    id: "be-quetelet-imc", theme: "belgique", niveau: 2,
+    q: "Quel Belge est à l'origine de l'indice de masse corporelle ?",
+    r: ["Adolphe Quetelet", "Jules Bordet", "Ernest Solvay", "Georges Lemaître"],
+    bonne: 0,
+    pourquoi: "Adolphe Quetelet, mathématicien et astronome — celui qu'on cite "
+            + "chaque fois qu'un médecin parle d'IMC.",
+    sources: ["quetelet-imc", "wp-quetelet"]
+  },
+  {
+    id: "be-observatoire", theme: "belgique", niveau: 2,
+    q: "Quel observatoire Adolphe Quetelet a-t-il fondé ?",
+    r: ["L'Observatoire royal de Belgique", "L'Observatoire de Paris",
+        "L'Observatoire de Greenwich", "L'Observatoire de Leyde"],
+    bonne: 0,
+    pourquoi: "L'Observatoire royal de Belgique, qui existe toujours.",
+    sources: ["wp-quetelet"]
+  },
+
+  {
+    id: "be-lumecon-sens", theme: "belgique", niveau: 3,
+    q: "Dans quel sens tourne saint Georges pendant le Lumeçon de Mons ?",
+    r: ["Dans le sens des aiguilles d'une montre", "Dans le sens inverse",
+        "Il ne tourne pas", "Il change de sens à chaque tour"],
+    bonne: 0,
+    pourquoi: "Saint Georges tourne dans le sens des aiguilles — l'ordre et la "
+            + "lumière — et le dragon dans l'autre — le désordre. Rien n'est laissé "
+            + "au hasard.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-lumecon-fin", theme: "belgique", niveau: 3,
+    q: "Comment saint Georges met-il fin au Lumeçon, à Mons ?",
+    r: ["D'un coup de pistolet", "D'un coup de lance", "En brûlant le dragon",
+        "En le noyant dans la Trouille"],
+    bonne: 0,
+    pourquoi: "D'un coup de pistolet. Le bien l'emporte, tous les ans, sans surprise "
+            + "et sans lassitude.",
+    sources: ["doudou-unesco"]
+  },
+  {
+    id: "be-doudou-siecle", theme: "belgique", niveau: 3,
+    q: "De quel siècle date l'origine de la Ducasse de Mons ?",
+    r: ["Le XIVe siècle", "Le XIe siècle", "Le XVIIe siècle", "Le XIXe siècle"],
+    bonne: 0,
+    pourquoi: "Le XIVe siècle, avec la confrérie de Monseigneur saint Georges.",
+    sources: ["wp-ducasse"]
+  },
+  {
+    id: "be-legende-doree", theme: "belgique", niveau: 3,
+    q: "De quel recueil du XIIIe siècle vient la légende du combat joué à Mons ?",
+    r: ["La Légende dorée", "Le Roman de Renart", "Les Chroniques de Hainaut",
+        "Le Miroir des Princes"],
+    bonne: 0,
+    pourquoi: "La Légende dorée de Jacques de Voragine.",
+    sources: ["wp-ducasse"]
+  },
+  {
+    id: "be-doudou-intitule", theme: "belgique", niveau: 3,
+    q: "Sous quel intitulé la Ducasse de Mons figure-t-elle à l'UNESCO ?",
+    r: ["Géants et dragons processionnels de Belgique et de France",
+        "Carnavals du bassin minier", "Fêtes de la Wallonie",
+        "Patrimoine vivant du Hainaut"],
+    bonne: 0,
+    pourquoi: "Elle partage son inscription avec les géants d'Ath, de Bruxelles "
+            + "et du nord de la France.",
+    sources: ["wp-ducasse"]
+  },
+  {
+    id: "be-atome-primitif", theme: "belgique", niveau: 3,
+    q: "En quelle année Georges Lemaître a-t-il formulé l'hypothèse de l'atome primitif ?",
+    r: ["1931", "1927", "1917", "1945"],
+    bonne: 0,
+    pourquoi: "1931. L'univers serait parti d'un état d'énorme densité — l'idée "
+            + "qu'un adversaire baptisera « Big Bang » par moquerie.",
+    sources: ["lemaitre-leuven"]
+  },
+  {
+    id: "be-lemaitre-yser", theme: "belgique", niveau: 3,
+    q: "Sur quel front Georges Lemaître a-t-il combattu pendant la Grande Guerre ?",
+    r: ["Le front de l'Yser", "Le front de la Somme", "Le front de Verdun",
+        "Le front d'Orient"],
+    bonne: 0,
+    pourquoi: "L'Yser. Il fera la guerre avant de faire l'univers.",
+    sources: ["lemaitre-leuven"]
+  },
+  {
+    id: "be-lemaitre-1923", theme: "belgique", niveau: 3,
+    q: "En quelle année Georges Lemaître a-t-il été ordonné prêtre ?",
+    r: ["1923", "1914", "1931", "1940"],
+    bonne: 0,
+    pourquoi: "1923, après la physique, les mathématiques, puis la théologie.",
+    sources: ["lemaitre-leuven"]
+  },
+  {
+    id: "be-lemaitre-1894", theme: "belgique", niveau: 3,
+    q: "En quelle année est né Georges Lemaître, le père du Big Bang ?",
+    r: ["1894", "1874", "1904", "1912"],
+    bonne: 0,
+    pourquoi: "1894 — l'année même où la Charte est adoptée à Quaregnon. "
+            + "Le Borinage écrivait sa doctrine pendant qu'un futur prêtre naissait "
+            + "avec l'univers dans la tête.",
+    sources: ["britannica-lemaitre", "wp-charte"]
+  },
+  {
+    id: "be-bakelite-produits", theme: "belgique", niveau: 3,
+    q: "À partir de quels produits Leo Baekeland a-t-il fabriqué la bakélite ?",
+    r: ["Le phénol et le formaldéhyde", "Le pétrole et le soufre",
+        "La cellulose et le camphre", "Le charbon et la chaux"],
+    bonne: 0,
+    pourquoi: "Le phénol et le formaldéhyde, chauffés sous pression.",
+    sources: ["britannica-baekeland"]
+  },
+  {
+    id: "be-indice-quetelet", theme: "belgique", niveau: 3,
+    q: "Quel nom portait l'indice de masse corporelle avant 1972 ?",
+    autonome: true,
+    r: ["L'indice de Quetelet", "L'indice de Broca", "L'indice de Lorentz",
+        "L'indice de Bouchard"],
+    bonne: 0,
+    pourquoi: "L'indice de Quetelet, rebaptisé « Body Mass Index » par Ancel Keys.",
+    sources: ["quetelet-imc", "wp-quetelet"]
+  },
+  {
+    id: "be-quetelet-loi", theme: "belgique", niveau: 3,
+    q: "Quelle relation Adolphe Quetelet a-t-il énoncée entre le poids et la taille ?",
+    r: ["Le poids croît comme le carré de la taille",
+        "Le poids croît comme le cube de la taille",
+        "Le poids croît proportionnellement à la taille",
+        "Le poids ne dépend pas de la taille"],
+    bonne: 0,
+    pourquoi: "Le carré de la taille — c'est encore la formule qu'on emploie "
+            + "presque deux siècles plus tard.",
+    sources: ["wp-quetelet"]
+  }
 
 ];
 

@@ -225,6 +225,63 @@ const SOURCES = {
     lu: "2026-08-12"
   },
 
+  "doudou-unesco": {
+    titre: "The Doudou, the Ritual Ducasse of Mons",
+    ou: "visitMons",
+    lien: "https://www.visitmons.be/en/unesco/article/the-doudou-690772",
+    lu: "2026-08-12"
+  },
+
+  "wp-ducasse": {
+    titre: "Ducasse de Mons",
+    ou: "Wikipedia (en)",
+    lien: "https://en.wikipedia.org/wiki/Ducasse_de_Mons",
+    lu: "2026-08-12"
+  },
+
+  "pci-ducasse": {
+    titre: "La Ducasse de Mons — patrimoine culturel immatériel",
+    ou: "Fédération Wallonie-Bruxelles",
+    lien: "https://patrimoineculturel.cfwb.be/patrimoines-en-fwb/pci-recherche/pcidetails/fwbpci-fiche/la-ducasse-de-mons/",
+    lu: "2026-08-12"
+  },
+
+  "lemaitre-leuven": {
+    titre: "Georges Lemaître et l'atome primitif",
+    ou: "Visit Leuven",
+    lien: "https://visitleuven.be/en/primeval-atom-lemaitre",
+    lu: "2026-08-12"
+  },
+
+  "britannica-lemaitre": {
+    titre: "Georges Lemaître — Big Bang Theory, Cosmology & Physics",
+    ou: "Encyclopædia Britannica",
+    lien: "https://www.britannica.com/biography/Georges-Lemaitre",
+    lu: "2026-08-12"
+  },
+
+  "britannica-baekeland": {
+    titre: "Leo Baekeland — Inventor, Bakelite, Plastics",
+    ou: "Encyclopædia Britannica",
+    lien: "https://www.britannica.com/biography/Leo-Baekeland",
+    lu: "2026-08-12"
+  },
+
+  "quetelet-imc": {
+    titre: "Did you know that the Body Mass Index was invented by the Belgian "
+         + "mathematician Lambert Adolphe Quetelet ?",
+    ou: "Focus on Belgium (service public fédéral)",
+    lien: "https://focusonbelgium.be/en/facts/did-you-know-body-mass-index-bmi-was-invented-belgian-mathematician-lambert-adolphe-quetelet",
+    lu: "2026-08-12"
+  },
+
+  "wp-quetelet": {
+    titre: "Adolphe Quetelet",
+    ou: "Wikipedia (en)",
+    lien: "https://en.wikipedia.org/wiki/Adolphe_Quetelet",
+    lu: "2026-08-12"
+  },
+
   "britannica-belgique": {
     titre: "Belgium — History, Flag, Map, Population, Facts",
     ou: "Encyclopædia Britannica",
