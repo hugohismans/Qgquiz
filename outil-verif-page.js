@@ -64,9 +64,23 @@ function verifier(titre, condition, detail) {
   console.log("  ÉCHEC  " + titre + (detail ? "\n         " + detail : ""));
 }
 
+/* Un vrai PNG d'un pixel, en dur. Il sert à éprouver le mécanisme qui laisse
+   le logo officiel prendre la place du Q dessiné — sans jamais rien écrire
+   dans le dépôt, donc sans risque de l'y oublier. */
+const PIXEL = Buffer.from(
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9"
+  + "awAAAABJRU5ErkJggg==", "base64");
+
+let servirLogo = false;
+
 const serveur = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split("?")[0]);
   if (p === "/") p = "/index.html";
+  if (p === "/images/logo.png") {
+    if (!servirLogo) { res.writeHead(404); return res.end("non"); }
+    res.writeHead(200, { "Content-Type": "image/png" });
+    return res.end(PIXEL);
+  }
   const f = path.join(RACINE, p);
   if (!f.startsWith(RACINE) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) {
     res.writeHead(404); return res.end("non");
@@ -166,6 +180,65 @@ function seChevauchent(a, b) {
 
     verifier("aucune erreur JavaScript — " + ecran.nom, erreurs.length === 0,
       erreurs.join(" ; "));
+
+    await ctx.close();
+  }
+
+  /* ------------------------------------------------------------- le Q */
+
+  console.log("\nLe Q");
+
+  {
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await ctx.newPage();
+
+    servirLogo = false;
+    await page.goto("http://localhost:" + PORT + "/", { waitUntil: "networkidle" });
+    await page.waitForTimeout(400);
+
+    const q = await page.locator(".q-logo").first();
+    const boite = await q.boundingBox();
+    verifier("le Q s'affiche", !!boite && boite.width > 40 && boite.height > 40,
+      "il est absent ou réduit à rien");
+    verifier("le Q tient dans la largeur de l'écran",
+      !!boite && boite.x >= 0 && boite.x + boite.width <= 390 + 1,
+      "sa queue déborde très à droite : c'est sa forme, il faut lui laisser la place");
+
+    verifier("sans logo officiel, c'est le Q dessiné qui s'affiche",
+      (await page.evaluate(() =>
+        document.querySelector(".q-logo").tagName.toLowerCase())) === "svg");
+
+    /* Le vert de la commune. Mon premier Q était rouge — la faute qu'un
+       Quaregnonnais voit en une seconde et que rien ne rattrapait. */
+    const vert = await page.evaluate(() => {
+      const s = document.querySelector(".q-logo").outerHTML.toLowerCase();
+      return { sauge: s.indexOf("#9fc493") !== -1,
+               rouge: /#d1332e|#c8102e|var\(--rouge\)/.test(s) };
+    });
+    verifier("le Q est au vert de la commune", vert.sauge,
+      "le vert relevé sur le logo de Quaregnon est #9fc493");
+    verifier("le Q n'est pas rouge", !vert.rouge,
+      "le rouge est la couleur de la Charte, pas celle du logo");
+
+    await ctx.close();
+  }
+
+  {
+    /* Et si le fichier officiel arrive, il doit prendre la place tout seul. */
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await ctx.newPage();
+
+    servirLogo = true;
+    await page.goto("http://localhost:" + PORT + "/", { waitUntil: "networkidle" });
+    await page.waitForTimeout(600);
+
+    verifier("un logo déposé dans images/logo.png prend la place du dessin",
+      (await page.evaluate(() =>
+        document.querySelector(".q-logo").tagName.toLowerCase())) === "img",
+      "le mécanisme est là pour le jour où la commune donne son accord");
+    verifier("le logo déposé garde une alternative textuelle",
+      !!(await page.getAttribute(".q-logo", "alt")));
+    servirLogo = false;
 
     await ctx.close();
   }

@@ -112,14 +112,14 @@ livre**, et ce sont les meilleures questions du site.
 node verifier.js
 ```
 
-**1 892 contrôles**, six outils, sans navigateur pour l'essentiel. Ils couvrent
+**1 899 contrôles**, six outils, sans navigateur pour l'essentiel. Ils couvrent
 la banque de questions, le tirage, le barème, le classement, le miroir du
 multijoueur, l'écriture des nombres, les réglages du son, les licences des
 photos, et la mise en page telle qu'on la voit.
 
-Chacun a été prouvé capable d'échouer : les trente et un comportements
-surveillés ont été cassés volontairement, un par un, et les trente et un ont
-été attrapés. Un contrôle qui n'échoue jamais ne teste rien.
+Chacun a été prouvé capable d'échouer : les trente-cinq comportements
+surveillés ont été cassés volontairement, un par un, et les trente-cinq ont été
+attrapés. Un contrôle qui n'échoue jamais ne teste rien.
 
 Trois d'entre eux valent d'être expliqués :
 
@@ -193,6 +193,9 @@ d'Hugo.
 - Une **question à photo** : on montre un coin de Quaregnon, il faut le
   reconnaître. Il y a déjà sept photos dans le dépôt pour ça.
 - Un **classement qui dure**, gardé d'une soirée à l'autre.
-- **Le vrai Q de la commune.** Celui du site est un Q dessiné pour l'occasion :
-  un anneau rouge, une queue dorée. Ce n'est pas le logo de Quaregnon, qui n'est
-  pas libre de droits. Voir [`images/CREDITS.md`](images/CREDITS.md).
+- **Le vrai Q de la commune.** Celui du site est dessiné à la main d'après la
+  forme du logo de Quaregnon — le vert sage, l'ovale penché, la longue queue qui
+  file au loin. Ce n'est pas le logo officiel, qui n'est pas libre de droits.
+  Déposer le fichier dans `images/logo.png` suffit à le mettre à la place ; ce
+  qui reste à régler, c'est l'autorisation de la commune. Voir
+  [`images/LISEZ-MOI.md`](images/LISEZ-MOI.md).

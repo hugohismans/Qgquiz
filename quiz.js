@@ -689,6 +689,31 @@ if (typeof document !== "undefined") (function () {
     img.src = "images/fond.jpg";
   }
 
+  /* Le vrai Q de la commune, s'il est un jour déposé.
+
+     Celui qui s'affiche est un Q dessiné à la main d'après la forme du logo de
+     Quaregnon — vert sage, ovale penché, longue queue qui file au loin. Ce
+     n'est pas le logo officiel, et il ne prétend pas l'être : un logo communal
+     n'est pas libre de droits.
+
+     Le jour où quelqu'un dépose le fichier officiel dans images/logo.png — en
+     ayant vérifié qu'on a le droit de s'en servir —, il prend la place du
+     dessin, tout seul, sans qu'on touche à quoi que ce soit. Tant qu'il n'est
+     pas là, rien ne casse et rien ne clignote. */
+  function chercherLogo() {
+    const img = new Image();
+    img.onload = function () {
+      const place = document.querySelector(".q-logo");
+      if (!place || !img.naturalWidth) return;
+      const vrai = new Image();
+      vrai.src = "images/logo.png";
+      vrai.alt = "Le Q de Quaregnon";
+      vrai.className = "q-logo";
+      place.parentNode.replaceChild(vrai, place);
+    };
+    img.src = "images/logo.png";
+  }
+
   /* Le son ne peut pas démarrer avant qu'on ait touché la page — tous les
      navigateurs l'interdisent, et ils ont raison. On ne se bat pas contre :
      on attend le premier geste, qui vient de toute façon puisqu'il faut bien
@@ -719,6 +744,7 @@ if (typeof document !== "undefined") (function () {
   rappel();
   peindreReglages();
   chercherPhoto();
+  chercherLogo();
   $("pied-compte").textContent =
     QUESTIONS.length + " questions, "
     + Object.keys(SOURCES).length + " sources.";

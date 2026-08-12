@@ -87,10 +87,50 @@
 <section id="accueil" class="ecran actif">
 
   <div class="enseigne">
-    <svg class="q-logo" viewBox="0 0 100 100" role="img" aria-label="Le Q de Quaregnon">
-      <circle class="noyau" cx="50" cy="46" r="26"/>
-      <circle class="anneau" cx="50" cy="46" r="31"/>
-      <path class="queue" d="M64 68 L85 91"/>
+    <!-- ================================================================
+         LE Q.
+
+         Le vrai logo de Quaregnon est un Q vert sage : un ovale penché tracé
+         au pinceau, dont la queue part de l'intérieur, croise le bas de
+         l'ovale et file très loin vers la droite, débordant largement du cadre
+         carré qui l'entoure. Hugo l'a montré le 12 août 2026 — mon premier Q
+         était rouge avec une queue courte, c'est-à-dire faux sur les deux points
+         qu'un Quaregnonnais reconnaît en une seconde.
+
+         Celui-ci est DESSINÉ ICI, à la main, d'après cette forme. Ce n'est pas
+         le logo de la commune : un logo communal n'est pas libre de droits, et
+         un site qui l'affiche a l'air de parler au nom de la commune. Si le
+         fichier officiel est un jour déposé dans images/logo.png, quiz.js le
+         détecte et le met à la place de celui-ci, sans rien changer d'autre.
+         ================================================================ -->
+    <svg class="q-logo" viewBox="0 0 110 105" role="img"
+         aria-label="Un Q dessiné d'après le Q de Quaregnon">
+      <defs>
+        <linearGradient id="cadreQ" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#9fc493" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#9fc493" stop-opacity=".22"/>
+        </linearGradient>
+        <linearGradient id="traitQ" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#d5e8ce"/>
+          <stop offset="55%"  stop-color="#9fc493"/>
+          <stop offset="100%" stop-color="#7fae74"/>
+        </linearGradient>
+      </defs>
+
+      <!-- le cadre carré, qui s'éclaircit vers le haut -->
+      <rect x="19" y="8" width="62" height="76" rx="1"
+            fill="url(#cadreQ)" stroke="#9fc493" stroke-opacity=".45"
+            stroke-width="1.1"/>
+
+      <!-- l'ovale, penché -->
+      <ellipse cx="50" cy="52" rx="28" ry="21"
+               transform="rotate(-13 50 52)"
+               fill="none" stroke="url(#traitQ)" stroke-width="7.5"/>
+
+      <!-- la queue : elle naît dans l'ovale, le traverse, et file au loin -->
+      <path d="M 33 62 C 44 88, 76 88, 108 76"
+            fill="none" stroke="url(#traitQ)" stroke-width="7"
+            stroke-linecap="round"/>
     </svg>
     <h1>Le Quiz de Quaregnon</h1>
     <p class="sous-titre">La cité de la Charte et du Renard</p>

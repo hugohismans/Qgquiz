@@ -23,6 +23,12 @@
   --gris:     #a2988c;
   --vert:     #5fa8a0;
 
+  /* Le vert du Q de Quaregnon, relevé sur le logo que m'a montré Hugo le
+     12 août 2026. C'est la couleur de la commune, et elle n'a rien à voir avec
+     le charbon : elle sert donc au Q, et à lui seul. */
+  --sauge:      #9fc493;
+  --sauge-clair:#d5e8ce;
+
   --ombre: 0 2px 0 rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
   --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -128,14 +134,12 @@ main {
 .enseigne { text-align: center; padding: 18px 0 6px; }
 
 .q-logo {
-  width: 132px; height: 132px;
   display: block; margin: 0 auto 6px;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,.6));
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.55));
 }
-.q-logo .anneau { fill: none; stroke: var(--rouge); stroke-width: 13; }
-.q-logo .queue  { fill: none; stroke: var(--or); stroke-width: 13;
-                  stroke-linecap: round; }
-.q-logo .noyau  { fill: var(--lampe); opacity: .13; }
+/* Le Q est plus large que haut à cause de sa queue : on lui laisse la place,
+   sinon elle sort du cadre et se fait couper. */
+.q-logo { width: 150px; height: 143px; }
 
 h1 {
   font-family: var(--serif);

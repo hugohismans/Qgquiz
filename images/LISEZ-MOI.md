@@ -45,14 +45,28 @@ photo du tout, c'est lui qu'on voit — le site n'a jamais de trou.
 
 ## Le Q
 
-Le Q de la page d'accueil est **un Q dessiné pour ce site** : un anneau rouge,
-une queue dorée. Ce n'est **pas** le logo de la commune de Quaregnon.
+Hugo a montré le vrai logo de Quaregnon le 12 août 2026 : un **Q vert sage**,
+un ovale penché tracé au pinceau, dont la queue part de l'intérieur, croise le
+bas de l'ovale et file très loin vers la droite, débordant du cadre carré qui
+l'entoure.
 
-Un logo communal n'est presque jamais libre de droits, et un site public qui
-l'affiche a l'air de parler au nom de la commune. Ce qu'on a pu établir de ses
-couleurs et de sa forme est décrit dans [`CREDITS.md`](CREDITS.md) — une
-description, pas une copie. Pour utiliser le vrai, un mot à l'administration
-communale règle la question dans un sens ou dans l'autre.
+Le premier Q de ce site était **rouge, avec une queue courte** — c'est-à-dire
+faux sur les deux points qu'un Quaregnonnais reconnaît en une seconde. Il est
+refait : même vert (`#9fc493`), même ovale penché, même longue queue.
+
+Mais c'est **un Q dessiné ici, à la main, d'après cette forme**. Ce n'est pas le
+logo de la commune, et il ne prétend pas l'être. Un logo communal n'est presque
+jamais libre de droits, et un site public qui l'affiche a l'air de parler au nom
+de la commune.
+
+**Pour mettre le vrai :** dépose le fichier officiel dans `images/logo.png`. Le
+site le détecte au chargement et le met à la place du dessin, tout seul, sans
+qu'on touche à rien. Tant qu'il n'est pas là, c'est le dessin qui s'affiche et
+rien ne casse.
+
+Reste la question des droits, qu'un fichier déposé ne règle pas : un mot à
+l'administration communale la tranche dans un sens ou dans l'autre. Ça se
+demande, et ça s'obtient souvent.
 
 ---
 
