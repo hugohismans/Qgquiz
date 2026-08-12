@@ -127,6 +127,104 @@ const SOURCES = {
     lu: "2026-08-12"
   },
 
+  "trappistes": {
+    titre: "Bière trappiste ou bière d'abbaye ?",
+    ou: "Les Bières Belges",
+    lien: "https://www.lesbieresbelges.be/fr/news/18-biere-trappiste-ou-d-abbaye.aspx",
+    lu: "2026-08-12"
+  },
+
+  "trappistes-six": {
+    titre: "Les 6 bières trappistes belges authentiques : guide complet",
+    ou: "Je retiens",
+    lien: "https://jeretiens.net/bieres-trappistes-belges/",
+    lu: "2026-08-12"
+  },
+
+  "gaufre-belge": {
+    titre: "La gaufre belge",
+    ou: "Gourmandises belges",
+    lien: "https://www.gourmandises-belges.com/la-gaufre-belge",
+    lu: "2026-08-12"
+  },
+
+  "moules-frites": {
+    titre: "Les moules-frites : une bataille d'origine entre la France et la Belgique",
+    ou: "Gourmandises belges",
+    lien: "https://www.gourmandises-belges.com/les-moules-frites-une-bataille-dorigine-entre-la-france-et-la-belgique",
+    lu: "2026-08-12"
+  },
+
+  "wp-bd-belge": {
+    titre: "Bande dessinée belge",
+    ou: "Wikipédia (fr)",
+    lien: "https://fr.wikipedia.org/wiki/Bande_dessin%C3%A9e_belge",
+    lu: "2026-08-12"
+  },
+
+  "botrange": {
+    titre: "Saviez-vous que le Signal de Botrange est le point culminant de la Belgique ?",
+    ou: "Focus on Belgium (service public fédéral)",
+    lien: "https://focusonbelgium.be/fr/le%20saviez-vous/saviez-vous-que-le-signal-de-botrange-est-le-point-culminant-de-la-belgique",
+    lu: "2026-08-12"
+  },
+
+  "larousse-botrange": {
+    titre: "Signal de Botrange",
+    ou: "Encyclopédie Larousse",
+    lien: "https://www.larousse.fr/encyclopedie/mont/signal_de_Botrange/109603",
+    lu: "2026-08-12"
+  },
+
+  "wp-sax": {
+    titre: "Adolphe Sax",
+    ou: "Wikipedia (en)",
+    lien: "https://en.wikipedia.org/wiki/Adolphe_Sax",
+    lu: "2026-08-12"
+  },
+
+  "wp-brel": {
+    titre: "Jacques Brel",
+    ou: "Wikipedia (en)",
+    lien: "https://en.wikipedia.org/wiki/Jacques_Brel",
+    lu: "2026-08-12"
+  },
+
+  "eupedia-belges": {
+    titre: "Famous Belgian people",
+    ou: "Eupedia",
+    lien: "https://www.eupedia.com/belgium/famous_people.shtml",
+    lu: "2026-08-12"
+  },
+
+  "fete-21-juillet": {
+    titre: "Fête nationale belge : pourquoi célébrons-nous le 21 juillet ?",
+    ou: "Bruxelles Secrète",
+    lien: "https://bruxellessecrete.com/fete-nationale-belge-21-juillet/",
+    lu: "2026-08-12"
+  },
+
+  "histoire-bruxelles": {
+    titre: "Histoire de Bruxelles",
+    ou: "Visitons Bruxelles",
+    lien: "https://www.visitonsbruxelles.com/histoire",
+    lu: "2026-08-12"
+  },
+
+  "wp-bruxelles": {
+    titre: "Brussels",
+    ou: "Wikipedia (en)",
+    lien: "https://en.wikipedia.org/wiki/Brussels",
+    lu: "2026-08-12"
+  },
+
+  "record-gouvernement": {
+    titre: "Brussels and the world record that nobody wanted",
+    ou: "IPS Journal",
+    lien: "https://www.ips-journal.eu/topics/democracy-and-society/the-world-record-that-nobody-wanted-8729/",
+    lu: "2026-08-12"
+  },
+
   "britannica-belgique": {
     titre: "Belgium — History, Flag, Map, Population, Facts",
     ou: "Encyclopædia Britannica",

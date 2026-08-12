@@ -634,6 +634,439 @@ const QUESTIONS = [
             + "porte son nom ici.",
     sources: ["quaregnon-celebres"]
   }
+,
+
+  /* ==================== LA BELGIQUE — AJOUT DU 12 AOÛT 2026 ====================
+     Hugo en voulait « beaucoup plus » pendant que sa famille testait le site.
+     Chaque réponse ci-dessous vient d'une page relevée ce jour-là, pas de ma
+     mémoire. Les questions sur Quaregnon, le Borinage et le borain arrivent
+     par ailleurs. */
+
+  /* ---- niveau 1 ---- */
+  {
+    id: "be-capitale", theme: "belgique", niveau: 1,
+    q: "Quelle est la capitale de la Belgique ?",
+    r: ["Bruxelles", "Anvers", "Gand", "Liège"],
+    bonne: 0,
+    pourquoi: "Bruxelles, qui est aussi le siège de la Commission européenne et du Conseil européen.",
+    sources: ["wp-bruxelles"]
+  },
+  {
+    id: "be-otan", theme: "belgique", niveau: 1,
+    q: "Quelle grande alliance militaire a son siège en Belgique ?",
+    r: ["L'OTAN", "L'ONU", "Le Pacte de Varsovie", "L'OSCE"],
+    bonne: 0,
+    pourquoi: "L'OTAN siège à Bruxelles, comme la Commission et le Conseil européens. "
+            + "Peu de villes concentrent autant d'institutions.",
+    sources: ["wp-bruxelles"]
+  },
+  {
+    id: "be-fete", theme: "belgique", niveau: 1,
+    q: "Quel jour tombe la fête nationale de la Belgique ?",
+    r: ["Le 21 juillet", "Le 14 juillet", "Le 11 novembre", "Le 1er mai"],
+    bonne: 0,
+    pourquoi: "Le 21 juillet, anniversaire du serment prêté par le premier roi des Belges.",
+    sources: ["fete-21-juillet"]
+  },
+  {
+    id: "be-atomium", theme: "belgique", niveau: 1,
+    q: "Quel monument de Bruxelles a été bâti pour l'Exposition universelle de 1958 ?",
+    r: ["L'Atomium", "Le Palais de Justice", "La Basilique de Koekelberg", "Le Berlaymont"],
+    bonne: 0,
+    pourquoi: "L'Atomium est né de l'Exposition de 1958 et n'a jamais été démonté.",
+    sources: ["histoire-bruxelles"]
+  },
+  {
+    id: "be-grand-place", theme: "belgique", niveau: 1,
+    q: "Quelle place de Bruxelles est classée au patrimoine mondial de l'UNESCO ?",
+    r: ["La Grand-Place", "La place Flagey", "La place Sainte-Catherine", "La place Rogier"],
+    bonne: 0,
+    pourquoi: "La Grand-Place, ses maisons de corporations et son hôtel de ville.",
+    sources: ["histoire-bruxelles"]
+  },
+  {
+    id: "be-manneken", theme: "belgique", niveau: 1,
+    q: "Quelle toute petite statue est un symbole de Bruxelles ?",
+    r: ["Le Manneken-Pis", "La Petite Sirène", "Le Chat botté", "Le Gille"],
+    bonne: 0,
+    pourquoi: "Le Manneken-Pis, avec l'Atomium, est l'image que le monde entier a de la ville.",
+    sources: ["histoire-bruxelles"]
+  },
+  {
+    id: "be-tintin", theme: "belgique", niveau: 1,
+    q: "Quel jeune reporter de bande dessinée Hergé a-t-il créé en 1929 ?",
+    r: ["Tintin", "Spirou", "Gaston Lagaffe", "Blake et Mortimer"],
+    bonne: 0,
+    pourquoi: "Tintin naît en 1929 sous le crayon d'Hergé, et part faire le tour du monde "
+            + "avec son fox-terrier.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-peyo", theme: "belgique", niveau: 1,
+    q: "Quel dessinateur belge a créé les Schtroumpfs ?",
+    r: ["Peyo", "Hergé", "Morris", "Franquin"],
+    bonne: 0,
+    pourquoi: "Peyo. Hergé a fait Tintin, Morris Lucky Luke, et Franquin Gaston Lagaffe — "
+            + "quatre Belges, quatre monuments.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-lucky-luke", theme: "belgique", niveau: 1,
+    q: "Quel cow-boy de papier est né sous le crayon de Morris en 1947 ?",
+    r: ["Lucky Luke", "Buck Danny", "Jerry Spring", "Blueberry"],
+    bonne: 0,
+    pourquoi: "Lucky Luke, l'homme qui tire plus vite que son ombre.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-saxophone", theme: "belgique", niveau: 1,
+    q: "Quel instrument de musique un Belge a-t-il inventé ?",
+    r: ["Le saxophone", "La clarinette", "Le trombone", "L'accordéon"],
+    bonne: 0,
+    pourquoi: "Le saxophone, inventé par Adolphe Sax, né à Dinant.",
+    sources: ["wp-sax"]
+  },
+  {
+    id: "be-trappistes-combien", theme: "belgique", niveau: 1,
+    q: "Combien de bières peuvent porter le nom de trappiste en Belgique ?",
+    r: ["Six", "Deux", "Douze", "Une trentaine"],
+    bonne: 0,
+    pourquoi: "Six : Achel, Chimay, Orval, Rochefort, Westmalle et Westvleteren. "
+            + "Tout le reste est de la bière d'abbaye, ce qui n'est pas la même chose.",
+    sources: ["trappistes", "trappistes-six"]
+  },
+  {
+    id: "be-moules", theme: "belgique", niveau: 1,
+    q: "Quel plat est souvent appelé le plat national de la Belgique ?",
+    r: ["Les moules-frites", "La choucroute", "Le cassoulet", "La raclette"],
+    bonne: 0,
+    pourquoi: "Les moules-frites. La recette apparaît d'abord dans un livre français du "
+            + "XIVe siècle, mais c'est en Belgique qu'elle est devenue une institution.",
+    sources: ["moules-frites"]
+  },
+  {
+    id: "be-sax-ville", theme: "belgique", niveau: 1,
+    q: "Dans quelle ville belge est né Adolphe Sax ?",
+    r: ["Dinant", "Namur", "Mons", "Bruges"],
+    bonne: 0,
+    pourquoi: "Dinant, sur la Meuse, qui ne laisse personne l'oublier.",
+    sources: ["wp-sax"]
+  },
+  {
+    id: "be-merckx", theme: "belgique", niveau: 1,
+    q: "Quel cycliste belge a gagné cinq fois le Tour de France ?",
+    r: ["Eddy Merckx", "Tom Boonen", "Philippe Gilbert", "Rik Van Looy"],
+    bonne: 0,
+    pourquoi: "Eddy Merckx, cinq Tours, et pour beaucoup le plus grand coureur de tous les temps.",
+    sources: ["eupedia-belges"]
+  },
+  {
+    id: "be-magritte", theme: "belgique", niveau: 1,
+    q: "Quel peintre né en Belgique est l'un des grands noms du surréalisme ?",
+    r: ["René Magritte", "Paul Cézanne", "Salvador Dalí", "Joan Miró"],
+    bonne: 0,
+    pourquoi: "René Magritte. Dalí était espagnol, Miró catalan, Cézanne français.",
+    sources: ["eupedia-belges"]
+  },
+  {
+    id: "be-botrange-nom", theme: "belgique", niveau: 1,
+    q: "Comment s'appelle le point culminant de la Belgique ?",
+    r: ["Le Signal de Botrange", "Le Mont Saint-Aubert", "La Citadelle de Namur",
+        "Le Kemmelberg"],
+    bonne: 0,
+    pourquoi: "Le Signal de Botrange, dans les Hautes Fagnes. On y monte en voiture, "
+            + "ce qui dit assez la hauteur du pays.",
+    sources: ["botrange"]
+  },
+
+  /* ---- niveau 2 ---- */
+  {
+    id: "be-botrange-altitude", theme: "belgique", niveau: 2,
+    q: "À quelle altitude culmine le Signal de Botrange ?",
+    r: ["694 mètres", "1 294 mètres", "412 mètres", "2 040 mètres"],
+    bonne: 0,
+    pourquoi: "694 mètres — le toit de la Belgique, et aussi celui du Benelux.",
+    sources: ["botrange", "larousse-botrange"]
+  },
+  {
+    id: "be-hautes-fagnes", theme: "belgique", niveau: 2,
+    q: "Dans quel plateau se trouve le Signal de Botrange ?",
+    r: ["Les Hautes Fagnes", "Le Condroz", "La Famenne", "Le Pays de Herve"],
+    bonne: 0,
+    pourquoi: "Le plateau des Hautes Fagnes, une tourbière battue par le vent.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-botrange-province", theme: "belgique", niveau: 2,
+    q: "Dans quelle province se trouve le Signal de Botrange ?",
+    r: ["Liège", "Luxembourg", "Namur", "Hainaut"],
+    bonne: 0,
+    pourquoi: "La province de Liège, tout à l'est, dans les cantons rattachés en 1919.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-sax-annee", theme: "belgique", niveau: 2,
+    q: "En quelle année Adolphe Sax a-t-il inventé le saxophone ?",
+    r: ["1841", "1889", "1798", "1912"],
+    bonne: 0,
+    pourquoi: "1841. L'instrument portera son nom, ce qui est une belle revanche pour un "
+            + "homme qui s'est ruiné en procès.",
+    sources: ["wp-sax"]
+  },
+  {
+    id: "be-chimay", theme: "belgique", niveau: 2,
+    q: "Quelle abbaye trappiste du Hainaut brasse une bière connue dans le monde entier ?",
+    r: ["Chimay", "Orval", "Rochefort", "Westmalle"],
+    bonne: 0,
+    pourquoi: "Chimay, en Hainaut — la même province que Quaregnon. Orval est en province "
+            + "de Luxembourg, Rochefort à Namur, Westmalle en Flandre.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-orval", theme: "belgique", niveau: 2,
+    q: "Dans quelle province se trouve l'abbaye trappiste d'Orval ?",
+    r: ["Luxembourg", "Namur", "Liège", "Hainaut"],
+    bonne: 0,
+    pourquoi: "La province de Luxembourg — la belge, pas le grand-duché voisin.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-rochefort-province", theme: "belgique", niveau: 2,
+    q: "Quelle bière trappiste belge est brassée en province de Namur ?",
+    r: ["Rochefort", "Chimay", "Achel", "Westvleteren"],
+    bonne: 0,
+    pourquoi: "Rochefort. Chimay est en Hainaut, Achel au Limbourg, Westvleteren en Flandre.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-trappistes-wallonie", theme: "belgique", niveau: 2,
+    q: "Combien d'abbayes trappistes brassent de la bière en Wallonie ?",
+    r: ["Trois", "Une", "Cinq", "Six"],
+    bonne: 0,
+    pourquoi: "Trois — Chimay, Orval et Rochefort — contre trois en Flandre. "
+            + "Le pays est partagé jusque dans ses bières.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-gaufre-liege", theme: "belgique", niveau: 2,
+    q: "En Belgique, quelle gaufre se reconnaît à ses morceaux de sucre et ses bords arrondis ?",
+    r: ["La gaufre de Liège", "La gaufre de Bruxelles", "La gaufre de Namur",
+        "La gaufre de Gand"],
+    bonne: 0,
+    pourquoi: "Celle de Liège : petite, épaisse, avec des grains de sucre qui caramélisent.",
+    sources: ["gaufre-belge"]
+  },
+  {
+    id: "be-gaufre-bruxelles", theme: "belgique", niveau: 2,
+    q: "En Belgique, quelle gaufre est rectangulaire, avec de profonds creux ?",
+    r: ["La gaufre de Bruxelles", "La gaufre de Liège", "La gaufre de Charleroi",
+        "La gaufre d'Anvers"],
+    bonne: 0,
+    pourquoi: "Celle de Bruxelles : épaisse, rectangulaire, et faite pour la crème.",
+    sources: ["gaufre-belge"]
+  },
+  {
+    id: "be-spirou-annee", theme: "belgique", niveau: 2,
+    q: "En quelle année l'hebdomadaire Spirou a-t-il été créé ?",
+    r: ["1938", "1929", "1946", "1958"],
+    bonne: 0,
+    pourquoi: "1938, chez Dupuis. Il tient toujours, ce qui en fait l'un des plus vieux "
+            + "journaux de bande dessinée du monde.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-journal-tintin", theme: "belgique", niveau: 2,
+    q: "En quelle année l'hebdomadaire Tintin a-t-il été fondé ?",
+    r: ["1946", "1929", "1938", "1958"],
+    bonne: 0,
+    pourquoi: "1946, aux éditions du Lombard — dix-sept ans après la naissance du personnage.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-schtroumpfs-annee", theme: "belgique", niveau: 2,
+    q: "En quelle année les Schtroumpfs sont-ils apparus pour la première fois ?",
+    r: ["1958", "1938", "1969", "1975"],
+    bonne: 0,
+    pourquoi: "1958 — la même année que l'Atomium. Deux symboles belges nés d'un coup.",
+    sources: ["wp-bd-belge"]
+  },
+  {
+    id: "be-brel-naissance", theme: "belgique", niveau: 2,
+    q: "Dans quelle commune de Bruxelles est né Jacques Brel ?",
+    r: ["Schaerbeek", "Ixelles", "Uccle", "Anderlecht"],
+    bonne: 0,
+    pourquoi: "Schaerbeek, le 8 avril 1929.",
+    sources: ["wp-brel"]
+  },
+  {
+    id: "be-brel-mort", theme: "belgique", niveau: 2,
+    q: "En quelle année Jacques Brel est-il mort ?",
+    r: ["1978", "1968", "1985", "1991"],
+    bonne: 0,
+    pourquoi: "Le 9 octobre 1978, à quarante-neuf ans.",
+    sources: ["wp-brel"]
+  },
+  {
+    id: "be-hepburn", theme: "belgique", niveau: 2,
+    q: "Quelle actrice de cinéma mondialement connue est née à Bruxelles en 1929 ?",
+    r: ["Audrey Hepburn", "Ingrid Bergman", "Grace Kelly", "Romy Schneider"],
+    bonne: 0,
+    pourquoi: "Audrey Hepburn, née à Bruxelles d'un père anglais et d'une mère néerlandaise.",
+    sources: ["eupedia-belges"]
+  },
+  {
+    id: "be-simenon", theme: "belgique", niveau: 2,
+    q: "Quel écrivain belge a créé le commissaire Maigret ?",
+    r: ["Georges Simenon", "Amélie Nothomb", "Henri Michaux", "Émile Verhaeren"],
+    bonne: 0,
+    pourquoi: "Georges Simenon, l'un des auteurs les plus prolifiques que la Belgique ait produits.",
+    sources: ["eupedia-belges"]
+  },
+  {
+    id: "be-leopold", theme: "belgique", niveau: 2,
+    q: "Le serment de quel roi la fête nationale de la Belgique commémore-t-elle ?",
+    r: ["Léopold Ier", "Albert Ier", "Baudouin", "Philippe"],
+    bonne: 0,
+    pourquoi: "Léopold Ier, premier roi des Belges, qui prête serment le 21 juillet 1831.",
+    sources: ["fete-21-juillet"]
+  },
+
+  /* ---- niveau 3 ---- */
+  {
+    id: "be-botrange-1919", theme: "belgique", niveau: 3,
+    q: "Depuis quelle année le Signal de Botrange est-il le point culminant de la Belgique ?",
+    r: ["1919", "1830", "1945", "1963"],
+    bonne: 0,
+    pourquoi: "1919 : le traité de Versailles rattache les cantons de l'Est, et le pays "
+            + "gagne d'un coup vingt mètres d'altitude.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-baraque-michel", theme: "belgique", niveau: 3,
+    q: "Quel sommet était le point culminant de la Belgique avant 1919 ?",
+    r: ["La Baraque Michel", "Le Mont Rigi", "Le Kemmelberg", "Le Mont Saint-Aubert"],
+    bonne: 0,
+    pourquoi: "La Baraque Michel, détrônée par vingt mètres.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-baraque-altitude", theme: "belgique", niveau: 3,
+    q: "À quelle altitude culmine la Baraque Michel ?",
+    r: ["674 mètres", "694 mètres", "718 mètres", "612 mètres"],
+    bonne: 0,
+    pourquoi: "674 mètres, contre 694 au Signal de Botrange.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-butte-baltia", theme: "belgique", niveau: 3,
+    q: "À quoi sert la butte Baltia, élevée en 1923 au Signal de Botrange ?",
+    r: ["À atteindre symboliquement les 700 mètres", "À signaler la frontière",
+        "À abriter une station météo", "À marquer une tombe"],
+    bonne: 0,
+    pourquoi: "Un monticule de terre pour franchir les 700 mètres. Le pays est plat, "
+            + "et il le sait.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-tour-1934", theme: "belgique", niveau: 3,
+    q: "À quelle hauteur la tour de pierre de 1934 fait-elle culminer le Signal de Botrange ?",
+    r: ["718 mètres", "700 mètres", "694 mètres", "750 mètres"],
+    bonne: 0,
+    pourquoi: "718 mètres. Après la butte de terre, on a bâti une tour — l'obstination "
+            + "d'un pays sans montagne.",
+    sources: ["botrange"]
+  },
+  {
+    id: "be-serment-1831", theme: "belgique", niveau: 3,
+    q: "En quelle année Léopold Ier a-t-il prêté le serment que la fête nationale commémore ?",
+    r: ["1831", "1830", "1839", "1848"],
+    bonne: 0,
+    pourquoi: "Le 21 juillet 1831, un an après l'indépendance.",
+    sources: ["fete-21-juillet"]
+  },
+  {
+    id: "be-loi-1890", theme: "belgique", niveau: 3,
+    q: "Une loi de quelle année a fait du 21 juillet la fête nationale de la Belgique ?",
+    r: ["1890", "1831", "1919", "1950"],
+    bonne: 0,
+    pourquoi: "La loi du 27 mai 1890 — soit près de soixante ans après le serment lui-même.",
+    sources: ["fete-21-juillet"]
+  },
+  {
+    id: "be-expos-combien", theme: "belgique", niveau: 3,
+    q: "Combien de fois Bruxelles a-t-elle accueilli une Exposition universelle ?",
+    r: ["Trois fois", "Une fois", "Deux fois", "Cinq fois"],
+    bonne: 0,
+    pourquoi: "Trois : 1897, 1910 et 1958. Seule la dernière a laissé l'Atomium.",
+    sources: ["histoire-bruxelles"]
+  },
+  {
+    id: "be-expos-annees", theme: "belgique", niveau: 3,
+    q: "Outre 1958, quelles années ont vu une Exposition universelle à Bruxelles ?",
+    r: ["1897 et 1910", "1878 et 1900", "1925 et 1937", "1867 et 1889"],
+    bonne: 0,
+    pourquoi: "1897 et 1910.",
+    sources: ["histoire-bruxelles"]
+  },
+  {
+    id: "be-541-jours", theme: "belgique", niveau: 3,
+    q: "Combien de jours a-t-il fallu pour former le gouvernement fédéral d'Elio Di Rupo ?",
+    r: ["541 jours", "94 jours", "203 jours", "820 jours"],
+    bonne: 0,
+    pourquoi: "541 jours — un record du monde en temps de paix, longtemps resté imbattu.",
+    sources: ["record-gouvernement"]
+  },
+  {
+    id: "be-di-rupo-annee", theme: "belgique", niveau: 3,
+    q: "En quelle année le gouvernement d'Elio Di Rupo a-t-il fini par se former ?",
+    r: ["2011", "2007", "2014", "2019"],
+    bonne: 0,
+    pourquoi: "2011, au terme des 541 jours.",
+    sources: ["record-gouvernement"]
+  },
+  {
+    id: "be-rochefort-1595", theme: "belgique", niveau: 3,
+    q: "Parmi les six trappistes de Belgique, laquelle remonte à 1595 ?",
+    r: ["Rochefort", "Chimay", "Orval", "Achel"],
+    bonne: 0,
+    pourquoi: "Rochefort, de loin la plus ancienne des six.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-achel-1998", theme: "belgique", niveau: 3,
+    q: "Parmi les six trappistes de Belgique, laquelle a été fondée en dernier, en 1998 ?",
+    r: ["Achel", "Westvleteren", "Westmalle", "Orval"],
+    bonne: 0,
+    pourquoi: "Achel, au Limbourg — quatre siècles après Rochefort.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-westvleteren", theme: "belgique", niveau: 3,
+    q: "Dans quelle province se trouve l'abbaye trappiste de Westvleteren ?",
+    r: ["Flandre-Occidentale", "Anvers", "Limbourg", "Flandre-Orientale"],
+    bonne: 0,
+    pourquoi: "La Flandre-Occidentale. Westmalle est à Anvers, Achel au Limbourg.",
+    sources: ["trappistes-six"]
+  },
+  {
+    id: "be-sax-1894", theme: "belgique", niveau: 3,
+    q: "Adolphe Sax meurt en 1894. Que se passe-t-il à Quaregnon la même année ?",
+    r: ["L'adoption de la Charte de Quaregnon", "L'ouverture du puits du Renard",
+        "La fusion avec Wasmuël", "La construction de l'hôtel de ville"],
+    bonne: 0,
+    pourquoi: "La Charte de Quaregnon est adoptée le 26 mars 1894, et Adolphe Sax meurt "
+            + "le 7 février de la même année.",
+    sources: ["wp-sax", "wp-charte"]
+  },
+  {
+    id: "be-sax-naissance", theme: "belgique", niveau: 3,
+    q: "Quelle est la date de naissance d'Adolphe Sax ?",
+    r: ["Le 6 novembre 1814", "Le 6 novembre 1841", "Le 7 février 1814",
+        "Le 21 juillet 1831"],
+    bonne: 0,
+    pourquoi: "Le 6 novembre 1814, à Dinant. Il inventera le saxophone à vingt-sept ans.",
+    sources: ["wp-sax"]
+  }
 
 ];
 

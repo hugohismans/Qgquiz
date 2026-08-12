@@ -135,8 +135,12 @@ const SUJETS = ["borain", "borinage", "picard", "wallon", "charbonnage",
 function sujetsNommes(enonce) {
   const trouves = [];
 
-  enonce.split(/\s+/).forEach(function (brut) {
-    const mot = brut.replace(/^[«"'(’]+/, "").replace(/[»"',.;:!?)]+$/, "");
+  /* On coupe aussi sur les apostrophes. Sans ça, « l'abbaye d'Orval » ne
+     contenait aucun nom propre aux yeux du contrôle : le mot était « d'Orval »,
+     qui commence par un d minuscule. L'élision est partout en français, et
+     c'est exactement là que la règle se faisait avoir. */
+  enonce.split(/[\s'’]+/).forEach(function (brut) {
+    const mot = brut.replace(/^[«"(]+/, "").replace(/[»",.;:!?)]+$/, "");
     if (mot.length >= 3 && /^[A-ZÀ-ÖØ-Þ]/.test(mot) && !PAS_UN_NOM.has(mot)) {
       trouves.push(mot);
     }
