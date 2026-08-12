@@ -107,7 +107,8 @@ if (typeof document !== "undefined") (function () {
     ordre: [0, 1, 2, 3], repondu: false, debut: 0, minuteur: null,
 
     code: null, moi: null, hote: false, miroir: null,
-    tuyau: null, battement: null, gardien: null, mancheVue: -1, etatVu: null
+    tuyau: null, battement: null, gardien: null,
+    mancheVue: -1, etatVu: null, mancheReglee: -1
   };
 
   const LIMITE = function () { return (CONFIG.secondesParQuestion || 25) * 1000; };
@@ -466,7 +467,7 @@ if (typeof document !== "undefined") (function () {
     if (etat.hote && etat.code) SALON.effacer("salons/" + etat.code);
     arreterJauge();
     etat.code = null; etat.moi = null; etat.hote = false; etat.miroir = null;
-    etat.mancheVue = -1; etat.etatVu = null;
+    etat.mancheVue = -1; etat.etatVu = null; etat.mancheReglee = -1;
     window.removeEventListener("beforeunload", quitterVite);
     montrer("accueil");
   }
@@ -480,12 +481,22 @@ if (typeof document !== "undefined") (function () {
     peindreJoueurs("liste-attente", joueurs, false);
     peindreJoueurs("liste-jeu", joueurs, salon.etat === "question");
 
+    /* Le score en haut suit la base à chaque changement. Il ne se figeait
+       qu'au début d'une manche, alors il affichait encore l'ancien total
+       pendant qu'on répondait, puis sautait d'un coup. */
+    if (joueurs[etat.moi]) {
+      $("tableau-score").innerHTML =
+        "<b>" + nombre(joueurs[etat.moi].score || 0) + "</b> points";
+    }
+
     if (etat.hote) {
       $("b-lancer").disabled = SALON.classement(joueurs).length < 1;
     }
 
     if (salon.etat === "attente") {
-      if (etat.etatVu !== "attente") { montrer("salle"); etat.mancheVue = -1; }
+      if (etat.etatVu !== "attente") {
+        montrer("salle"); etat.mancheVue = -1; etat.mancheReglee = -1;
+      }
       etat.etatVu = "attente";
       return;
     }
@@ -553,7 +564,8 @@ if (typeof document !== "undefined") (function () {
       const li = document.createElement("li");
       if (j.id === etat.moi) li.className = "moi";
       const nom = document.createElement("span");
-      nom.textContent = j.nom + (j.id === (etat.miroir || {}).hote ? " ·  meneur" : "");
+      const mene = j.id === (etat.miroir || {}).hote;
+      nom.textContent = j.nom + (mene && !/meneur/i.test(j.nom) ? " · meneur" : "");
       li.appendChild(nom);
       const d = document.createElement("span");
       if (montrerAttente) {
@@ -611,9 +623,28 @@ if (typeof document !== "undefined") (function () {
       });
   }
 
+  /* Compter les points d'une manche, une fois et une seule.
+
+     LA GARDE CI-DESSOUS EST TOUT LE CONTRAIRE D'UN DÉTAIL. Sans elle, les
+     points étaient comptés deux fois, et le total ne collait pas avec ce que
+     le verdict annonçait — Hugo l'a vu sur son téléphone : « Juste — 868
+     points », et le tableau qui saute de bien plus.
+
+     L'enchaînement est vicieux. Le joueur répond, la base change, on redessine,
+     tout le monde a répondu, on compte. Compter ÉCRIT les scores dans la base
+     — ce qui la fait changer, donc on redessine encore. Or l'état est toujours
+     « question » à cet instant : l'écriture qui le passe à « révélation » n'est
+     pas encore arrivée. Tout le monde a toujours répondu. Alors on compte une
+     seconde fois.
+
+     C'est la maladie des deux écrivains pour une même valeur, sous un autre
+     visage : ici c'est le même écrivain, deux fois, parce qu'il réagit à sa
+     propre écriture. */
   function reveler() {
     const salon = etat.miroir || {};
     if (salon.etat !== "question" || !salon.manche) return;
+    if (etat.mancheReglee === salon.manche.i) return;
+    etat.mancheReglee = salon.manche.i;
     const q = questionParId(salon.manche.id);
     if (!q) return;
     const ordre = SALON.enTableau(salon.manche.ordre);

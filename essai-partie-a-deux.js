@@ -1,5 +1,5 @@
 /* ============================================================================
-   UNE PARTIE À DEUX, POUR DE VRAI.
+   DES PARTIES POUR DE VRAI — à deux, puis tout seul.
 
        npm install playwright        (une fois)
        node essai-partie-a-deux.js
@@ -253,6 +253,34 @@ function verifier(titre, condition, detail) {
     scores.join(" | ") + "   ≠   " + scoresB.join(" | "));
   verifier("l'invité ne peut pas faire avancer la partie",
     await B.locator("#b-suite").isDisabled());
+
+  /* LE CONTRÔLE QUI MANQUAIT. Hugo a vu sur son téléphone « Juste — 868
+     points » pendant que le tableau sautait de bien plus : les points étaient
+     comptés deux fois, parce que le meneur réagissait à sa propre écriture.
+
+     Les anciens contrôles ne pouvaient pas le voir : ils demandaient que le
+     meneur ait « des points » et que l'invité soit à zéro. Un score doublé
+     passe les deux. Alors on ne demande plus un ordre de grandeur, on demande
+     L'ÉGALITÉ : ce que le verdict annonce et ce que le tableau totalise
+     doivent être le même nombre. */
+  const annonce = await A.textContent("#verdict h3");
+  const chiffreAnnonce = Number((annonce.match(/(\d[\d\s\u202F]*)\s*points/) || [])[1]
+    ? (annonce.match(/(\d[\d\s\u202F]*)\s*points/)[1]).replace(/[\s\u202F]/g, "") : NaN);
+
+  const totalMeneur = await A.evaluate(() =>
+    fetch(SALON.adresse("salons/" + document.getElementById("affiche-code").textContent
+      + "/joueurs")).then(r => r.json())
+      .then(j => Math.max.apply(null, Object.keys(j).map(k => j[k].score || 0))));
+
+  verifier("le verdict annonce un nombre lisible",
+    Number.isFinite(chiffreAnnonce), "lu : « " + annonce + " »");
+  verifier("le total du meneur est exactement ce que le verdict a annoncé",
+    chiffreAnnonce === totalMeneur,
+    "le verdict dit " + chiffreAnnonce + ", le tableau dit " + totalMeneur
+    + " — les points sont comptés plusieurs fois");
+  verifier("une manche ne peut pas rapporter plus de mille points",
+    totalMeneur <= 1000,
+    totalMeneur + " points après une seule question");
   await A.screenshot({ path: SORTIE + "/7-revelation-meneur.png" });
 
   console.log("\nOn enchaîne jusqu'au classement");
@@ -272,6 +300,13 @@ function verifier(titre, condition, detail) {
   await A.waitForSelector("#fin.actif", { timeout: 10000 });
   await B.waitForSelector("#fin.actif", { timeout: 10000 });
   verifier("les deux arrivent au classement", true);
+
+  const scoresFinaux = await A.evaluate(() =>
+    Array.from(document.querySelectorAll("#podium li .pts"))
+      .map((e) => Number(e.textContent.replace(/[\s\u202F]/g, ""))));
+  verifier("aucun score final ne dépasse mille points par question",
+    scoresFinaux.every((v) => v <= 3 * 1000),
+    "partie de 3 questions, scores : " + scoresFinaux.join(", "));
 
   const podA = await A.locator("#podium li .nom").allTextContents();
   const podB = await B.locator("#podium li .nom").allTextContents();
@@ -303,7 +338,76 @@ function verifier(titre, condition, detail) {
   verifier("aucune erreur JavaScript pendant la partie", erreurs.length === 0,
     erreurs.join(" ; "));
 
+  /* ------------------------------------------------------------------
+     LE MENEUR TOUT SEUL.
+
+     C'est la partie qu'Hugo a jouée, et c'est le pire cas : avec un seul
+     joueur, « tout le monde a répondu » devient vrai à l'instant même où l'on
+     répond, donc le meneur se met à compter pendant que sa propre écriture
+     revient. Un salon à deux laisse un battement ; un salon à un, non.
+     ------------------------------------------------------------------ */
+  console.log("\nLe meneur joue seul");
+
+  const ctxS = await nav.newContext({ viewport: { width: 420, height: 900 } });
+  const S = await ctxS.newPage();
+  const erreursS = [];
+  S.on("pageerror", (e) => erreursS.push(e.message));
+
+  await S.goto("http://localhost:" + PORT_SITE + "/");
+  await S.click("#b-multi");
+  await S.fill("#champ-nom", "Hugo");
+  await S.click("#b-creer");
+  await S.waitForSelector("#salle.actif", { timeout: 8000 });
+  const codeS = (await S.textContent("#affiche-code")).trim();
+  await S.click("#b-lancer");
+  await S.waitForSelector("#jeu.actif", { timeout: 8000 });
+
+  let cumule = 0;
+  for (let tour = 0; tour < 3; tour++) {
+    const enonce = await S.textContent("#enonce");
+    const ordreS = await S.evaluate(() =>
+      Array.from(document.querySelectorAll("#reponses .reponse"))
+        .map((b) => b.lastChild.textContent));
+    const qS = QUESTIONS.find((q) => q.q === enonce);
+    const place = ordreS.indexOf(qS.r[qS.bonne]);
+
+    await S.locator("#reponses .reponse").nth(place).click();
+    await S.waitForFunction(() =>
+      document.querySelector("#verdict h3") !== null, null, { timeout: 8000 });
+    await S.waitForTimeout(500);
+
+    const dit = await S.textContent("#verdict h3");
+    const gagne = Number(((dit.match(/(\d[\d\s\u202F]*)\s*points/) || [])[1] || "0")
+      .replace(/[\s\u202F]/g, ""));
+    cumule += gagne;
+
+    const enBase = await S.evaluate((c) =>
+      fetch(SALON.adresse("salons/" + c + "/joueurs")).then((r) => r.json())
+        .then((j) => Object.keys(j).map((k) => j[k].score || 0)[0]), codeS);
+
+    verifier("seul, manche " + (tour + 1) + " : le tableau vaut la somme des verdicts",
+      enBase === cumule,
+      "verdicts cumulés " + cumule + ", tableau " + enBase
+      + " — avec un seul joueur, le meneur compte pendant sa propre écriture");
+    verifier("seul, manche " + (tour + 1) + " : la manche a rapporté au plus mille",
+      gagne <= 1000, gagne + " points pour une question");
+
+    if (tour < 2) {
+      await S.locator("#b-suite:visible").click();
+      await S.waitForTimeout(400);
+    }
+  }
+
+  await S.locator("#b-suite:visible").click();
+  await S.waitForSelector("#fin.actif", { timeout: 8000 });
+  const finalS = Number((await S.textContent("#score-final")).replace(/[\s\u202F]/g, ""));
+  verifier("seul, le score final est la somme de ce qui a été annoncé",
+    finalS === cumule, "annoncé " + cumule + ", affiché " + finalS);
+  verifier("seul, aucune erreur JavaScript", erreursS.length === 0, erreursS.join(" ; "));
+
+  await ctxS.close();
+
   await nav.close(); site.close(); base.close();
-  console.log("\n" + (echecs ? echecs + " échec(s)." : "Une partie complète à deux, sans accroc."));
+  console.log("\n" + (echecs ? echecs + " échec(s)." : "Les parties tiennent, à deux comme tout seul."));
   process.exit(echecs ? 1 : 0);
 })();

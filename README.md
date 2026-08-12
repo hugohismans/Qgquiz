@@ -117,8 +117,8 @@ la banque de questions, le tirage, le barème, le classement, le miroir du
 multijoueur, l'écriture des nombres, les réglages du son, les licences des
 photos, et la mise en page telle qu'on la voit.
 
-Chacun a été prouvé capable d'échouer : les trente-cinq comportements
-surveillés ont été cassés volontairement, un par un, et les trente-cinq ont été
+Chacun a été prouvé capable d'échouer : les trente-six comportements
+surveillés ont été cassés volontairement, un par un, et les trente-six ont été
 attrapés. Un contrôle qui n'échoue jamais ne teste rien.
 
 Trois d'entre eux valent d'être expliqués :
@@ -148,10 +148,19 @@ npm install playwright        # une fois
 node essai-partie-a-deux.js
 ```
 
-Ouvre **deux vrais navigateurs** et leur fait jouer une partie entière l'un
-contre l'autre : le salon s'ouvre, l'invité rejoint, les deux voient la même
-question dans le même ordre, le meneur marque, l'invité se trompe, le podium
-tombe pareil des deux côtés, et le joueur qui s'en va disparaît de la liste.
+Ouvre de **vrais navigateurs** et leur fait jouer des parties entières : d'abord
+à deux — le salon s'ouvre, l'invité rejoint, les deux voient la même question
+dans le même ordre, le meneur marque, l'invité se trompe, le podium tombe pareil
+des deux côtés, et le joueur qui s'en va disparaît de la liste — puis **le
+meneur tout seul**, qui est le pire cas.
+
+Il vérifie surtout une **égalité** : ce que le verdict annonce et ce que le
+tableau totalise doivent être le même nombre. C'est ce contrôle-là qui manquait
+le 12 août, quand Hugo a vu « Juste — 868 points » pendant que son total sautait
+de bien plus. Les points étaient comptés deux fois : le meneur réagissait à sa
+propre écriture, dans l'instant où l'état de la partie n'avait pas encore
+changé. Les anciens contrôles demandaient que le meneur ait « des points » — un
+score doublé passait sans broncher.
 
 **Ce que rien de tout ça ne couvre**, et il vaut mieux le dire : la partie à
 deux tourne contre une **imitation** de Firebase, écrite d'après la même lecture
