@@ -21,8 +21,9 @@ mis les pieds dans le Hainaut et à quelqu'un qui a grandi rue du Coron :
 borain, la Belgique. Le tirage répartit exprès les questions entre les thèmes
 allumés — sans ça, Quaregnon, qui est le mieux fourni, prenait toute la place.
 
-**57 questions**, et chacune porte sa source. Quand la réponse tombe, le lien
-vers l'endroit où elle a été lue s'affiche, et on peut aller vérifier.
+**264 questions**, et chacune porte sa source. Quand la réponse tombe, le lien
+vers l'endroit où elle a été lue s'affiche, et on peut aller vérifier. On choisit
+la longueur de la partie : 5, 10, 15 ou 25 questions.
 
 **Le multijoueur.** Un meneur ouvre un salon, les autres le rejoignent avec un
 code de quatre lettres. Tout le monde voit la même question, dans le même
@@ -94,12 +95,14 @@ haut du fichier :
 Les réponses sont mélangées à chaque partie : mets la bonne en premier si ça
 t'arrange. Puis `node verifier.js`.
 
-### Douze questions attendent une oreille
+### Soixante et une questions attendent une oreille
 
-Les questions sur le borain sont tirées de dictionnaires et de lexiques, jamais
-de mémoire — mais elles n'ont jamais été entendues dites par quelqu'un dont
-c'est la langue. `node verifier.js` les liste à chaque passage. Si l'une sonne
-faux, c'est elle qui a tort.
+Les questions sur le borain sont tirées de dictionnaires et de lexiques — celui
+de Georges Larcin, les travaux de Pierre Ruelle, les relevés de l'Académie
+royale de langue et de littérature françaises de Belgique — jamais de mémoire.
+Mais elles n'ont jamais été entendues dites par quelqu'un dont c'est la langue.
+`node verifier.js` les liste à chaque passage. Si l'une sonne faux, c'est elle
+qui a tort.
 
 Et surtout : **les mots entendus chez les grands-parents ne sont dans aucun
 livre**, et ce sont les meilleures questions du site.
@@ -112,7 +115,7 @@ livre**, et ce sont les meilleures questions du site.
 node verifier.js
 ```
 
-**1 899 contrôles**, six outils, sans navigateur pour l'essentiel. Ils couvrent
+**5 892 contrôles**, six outils, sans navigateur pour l'essentiel. Ils couvrent
 la banque de questions, le tirage, le barème, le classement, le miroir du
 multijoueur, l'écriture des nombres, les réglages du son, les licences des
 photos, et la mise en page telle qu'on la voit.
