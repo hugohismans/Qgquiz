@@ -179,7 +179,7 @@ d'Hugo.
 | `config.js` | la base Firebase et les réglages |
 | `images/` | les photos, leurs auteurs, leurs licences |
 | `verifier.js` | tout vérifier d'un coup |
-| `outil-verif-*.js` | les cinq outils de contrôle |
+| `outil-verif-*.js` | les six outils de contrôle |
 | `essai-partie-a-deux.js` | une partie complète, deux navigateurs |
 | `REGLES-FIREBASE.md` | les règles à coller quand le mode test expire |
 
